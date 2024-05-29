@@ -42,6 +42,14 @@ function createNoteElement(id, content) {
     updateNote(id, element.value);
   });
 
+  element.addEventListener("dblclick", () => {
+    const doDelete = confirm("Kann dass weg?");
+
+    if (doDelete) {
+      deleteNote(id, element);
+    }
+  });
+
   return element;
 }
 
@@ -65,4 +73,11 @@ function updateNote(id, newContent) {
 
   targetNote.content = newContent;
   saveNotes(notes);
+}
+
+function deleteNote(id, element) {
+  const notes = getNotes().filter((note) => note.id != id);
+
+  saveNotes(notes);
+  notesContainer.removeChild(element);
 }
