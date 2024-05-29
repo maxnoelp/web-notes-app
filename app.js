@@ -81,3 +81,11 @@ function deleteNote(id, element) {
   saveNotes(notes);
   notesContainer.removeChild(element);
 }
+
+
+const clearButton = document.getElementById("clearbutton");
+
+clearButton.addEventListener("click", () => {
+  localStorage.removeItem("notizen");
+  location.reload();
+})
